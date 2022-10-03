@@ -1,5 +1,5 @@
 
-# Reverse A string in C++
+# QUEUE USING LL
 
 Simple code for queue using Singly Linked List in C language
 
@@ -10,6 +10,7 @@ Simple code for queue using Singly Linked List in C language
 
 ## Contributing
 
-`hactoberfest-22` 
+`hactoberfest-22` `OPEN-SOURCE`
 
+# EXAMPLE
 ![App Screenshot](./images/QUEUE.png)
