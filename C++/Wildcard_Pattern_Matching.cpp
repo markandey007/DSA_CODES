@@ -1,3 +1,6 @@
+/*Name-:Jai Sinha
+  Edited on-:03-10-2022*/
+
 /* Question-:given 2 strings s1 and s2.We have to match string s1 containing (*,?,characters)
 to string s2 containing only characters,*/
 // * can contain characters ranging from 0 to size of string
