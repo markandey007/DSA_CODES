@@ -8,4 +8,4 @@ Simple code for queue using Singly Linked List in C language
 
 - [@ANSHUMANDAS1506](https://github.com/ANSHUMANDAS1506)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](./images/1st.png)
