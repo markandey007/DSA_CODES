@@ -1,0 +1,107 @@
+// C++ program for above approach
+#include <bits/stdc++.h>
+using namespace std;
+
+// Structure for a binary tree node
+struct Node {
+	int key;
+	Node *left, *right;
+};
+
+// A utility function to create a new node
+struct Node* newNode(int key)
+{
+	struct Node* node = new Node;
+	node->key = key;
+	node->left = node->right = NULL;
+	return node;
+}
+
+// Function to print vertical traversal
+// of a binary tree
+vector<vector<int> > printVerticalOrder(Node* root)
+{
+
+	// map<vertical, map<level,
+	// multiset<node values> > >
+	map<int, map<int, multiset<int> > > mpp;
+
+	// queue<Nodes, vertical, level>
+	queue<pair<Node*, pair<int, int> > > q;
+
+	q.push({ root, { 0, 0 } });
+
+	while (!q.empty()) {
+		auto p = q.front();
+		q.pop();
+
+		Node* temp = p.first;
+
+		// Vertical
+		int vertical = p.second.first;
+
+		// Level
+		int level = p.second.second;
+
+		// 2,0 -> {5,6} insert in the multiset
+		mpp[vertical][level].insert(temp->key);
+
+		// If left child of the node exits
+		// then push it on the queue
+		// with vertical decremented and
+		// level incremented
+		if (temp->left)
+			q.push({ temp->left,
+					{ vertical - 1,
+					level + 1 } });
+
+		// If right child of the node exits
+		// then push it on the queue
+		// with vertical incremented and
+		// level incremented
+		if (temp->right)
+			q.push({ temp->right,
+					{ vertical + 1,
+					level + 1 } });
+	}
+
+	vector<vector<int> > ans;
+
+	// Traverse the multiset part of each map
+	for (auto p : mpp) {
+		vector<int> col;
+		for (auto q : p.second) {
+			col.insert(col.end(),
+					q.second.begin(),
+					q.second.end());
+		}
+		ans.push_back(col);
+	}
+	return ans;
+}
+
+// Driver Code
+int main()
+{
+	Node* root = newNode(1);
+	root->left = newNode(2);
+	root->right = newNode(3);
+	root->left->left = newNode(4);
+	root->left->right = newNode(11);
+	root->right->left = newNode(6);
+	root->right->right = newNode(7);
+	root->right->left->right = newNode(8);
+	root->right->right->right = newNode(9);
+
+	// To store the vertical order traversal
+	vector<vector<int> > v =
+		printVerticalOrder(root);
+
+	for (auto i : v) {
+		for (auto j : i) {
+			cout << j << " ";
+		}
+		cout << endl;
+	}
+	return 0;
+}
