@@ -1,0 +1,26 @@
+#include "bits/stdc++.h"
+using namespace std;
+int main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    string str;
+    cin>>str;
+
+    string a ="hello";
+    int i=0;
+    int j=0;
+    while(i!=5 && j!=str.length()){
+    	if(a[i]==str[j]){
+    		i++;
+    	}
+    	j++;
+
+    }
+    if(i==5) cout<<"YES";
+    else{
+    	cout<<"NO";
+    }
+
+    return 0;
+}
