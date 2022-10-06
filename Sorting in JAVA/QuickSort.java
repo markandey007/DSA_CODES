@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Quick {
+public class QuickSort {
     public static void main(String[] args) {
         int[] arr = {5,4,3,2,1};
         quick(arr, 0, arr.length-1);
