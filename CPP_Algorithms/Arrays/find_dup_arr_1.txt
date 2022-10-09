@@ -1,0 +1,18 @@
+/*
+
+Another approach to find duplicate element present in the array itself
+
+*/
+
+int findDuplicate(vector<int> &arr) {
+    int i, j, temp = 0, leng;
+    leng = arr.size();
+    for(i = 0; i < leng; i++) {
+        temp = temp ^ i;
+    }
+    for(i = 0; i < leng; i++) {
+        temp = temp ^ arr[i];
+    }
+    return temp;
+    
+}

@@ -1,0 +1,47 @@
+/*
+
+Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in the result must appear as many times as it shows in both arrays and you may return the result in any order.
+
+ 
+
+Example 1:
+
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2,2]
+Example 2:
+
+Input: nums1 = [4,9,5], nums2 = [9,4,9,8,4]
+Output: [4,9]
+Explanation: [9,4] is also accepted.
+
+*/
+
+class Solution {
+public:
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        //store two arrays in the set 
+        // then iterate the lower size one and check if ele present in set 2
+        // if present add it to the vector and return vector 
+        // this is applicable for unsorted arrays
+        
+        set<int> s1;
+        set<int> s2;
+        vector<int> ans;
+        for(auto i:nums1) {
+            s1.insert(i);
+        }
+        for(auto j:nums2) {
+            s2.insert(j);
+        }
+        
+        //iterate over set1 and check if that element present in set 2;
+            
+        for(auto itr: s1) {
+            auto pos = s2.find(itr);
+            if(pos != s2.end()) {
+                ans.push_back(itr);
+            }
+        }
+        return ans;
+    }
+};
