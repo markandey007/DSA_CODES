@@ -1,3 +1,6 @@
+// This is a Linearsearch program in C++. 
+// It is important search algorithm for cracking interviews!
+
 #include<iostream>
 using namespace std;
 int main()
