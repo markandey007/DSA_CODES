@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    // Will initialise an array og initial size 10, by taking three counter variable "i" which will help in iterating through elements, "num" it will be the target element
+    for which we are performing searching and an "index" which will store the index of the target element.
+    
+    int arr[10], i, num, index;
+    cout<<"Enter 10 Numbers: ";
+    for(i=0; i<10; i++)
+        cin>>arr[i];
+    cout<<"\nEnter a Number to Search: ";
+    cin>>num;
+    for(i=0; i<10; i++)
+    {
+        if(arr[i]==num)
+        {
+            index = i;
+            break;
+        }
+    }
+    cout<<"\nFound at Index No."<<index;
+    cout<<endl;
+    return 0;
+}
