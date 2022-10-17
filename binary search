@@ -50,5 +50,39 @@ int main ()
         }  
     }  
     cout << " Number is not found. " << endl;  
-    return 0;  
+    return 0; 
+
+
+   // Use recursion method in BinarySearch also
+     /*void BinarySearch(int arr[],int num,int first,int last){
+   
+   int mid;
+
+   if(first > last){
+       
+        printf("Number is not found");
+        
+   } else {
+       
+      // Calculate mid element 
+      mid = (first + last)/2;
+    
+       //If mid is equal to number we are searching 
+
+      if(arr[mid]==num){
+          
+            printf("Element is found at index %d ",mid);
+            exit(0);
+            
+        }else if(arr[mid] > num){
+            
+            BinarySearch(arr, num, first, mid-1);
+        
+        }else{
+            
+            BinarySearch(arr, num, mid+1, last);
+        }   
+    }  
+}    */
+
 }   
