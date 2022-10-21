@@ -1,0 +1,159 @@
+// PROGRAM FOR UNION OF TWO SORTED LINKED LIST
+
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int info;
+    struct node *next;
+};
+struct node *getnode()
+{
+    struct node *p;
+    p=(struct node *)malloc(sizeof(struct node));
+    return p;
+}
+void InsBeg(struct node **list,int x)
+{
+    struct node *temp;
+    temp=getnode();
+    temp->info=x;
+    temp->next=*list;
+    *list=temp;
+}
+void InsAft(struct node **list,int x)
+{
+    struct node *p;
+    p=getnode();
+    p->info=x;
+    p->next=(*list)->next;
+    (*list)->next=p;
+}
+void AsIns(struct node **list,int x)
+{
+    struct node *temp,*q;
+    temp=*list;
+    q=NULL;
+    while(temp!=NULL && x>=temp->info)
+    {
+        q=temp;
+        temp=temp->next;
+    }
+    if(q==NULL)
+    {
+        InsBeg(&(*list),x);
+    }
+    else
+    {
+        InsAft(&q,x);
+    }
+}
+void Traverse(struct node *temp)
+{
+    struct node *p;
+    p=temp;
+    while(p!=NULL)
+    {
+        printf("%d ",p->info);
+        p=p->next;
+    }
+}
+void InsEnd(struct node **list,int x)
+{
+    struct node *temp,*p;
+    temp=*list;
+    p=getnode();
+    if(*list==NULL)
+    {
+        InsBeg(&(*list),x);
+    }
+    else
+    {
+        while(temp->next!=NULL)
+        {
+            temp=temp->next;
+        }
+        p->info=x;
+        p->next=NULL;
+        temp->next=p;
+    }
+}
+struct node *Union(struct node *START1,struct node *START2)
+{
+    struct node *list3,*p,*q;
+    p=START1;
+    q=START2;
+    list3=NULL;
+    while(p!=NULL && q!=NULL)
+    {
+        if(p->info < q->info)
+        {
+            InsEnd(&list3,p->info);
+            p=p->next;
+        }
+        else if(q->info < p->info)
+        {
+            InsEnd(&list3,q->info);
+            q=q->next;
+        }
+        else
+        {
+            InsEnd(&list3,p->info);
+            p=p->next;
+            q=q->next;
+        }
+    }
+    while(p!=NULL)
+    {
+        InsEnd(&list3,p->info);
+        p=p->next;
+    }
+    while(q!=NULL)
+    {
+        InsEnd(&list3,q->info);
+        q=q->next;
+    }
+    return list3;
+}
+int main()
+{
+    int i=1,n,val,m,x;
+    struct node *START1,*START2,*START3;
+    START1=NULL;
+    START2=NULL;
+    START3=NULL;
+    printf("Enter size of linked list 1 & 2:");
+    scanf("%d %d",&n,&m);
+    while(1)
+    {
+        while(n>0)
+        {
+            printf("Enter data %d: ",i);
+            scanf("%d",&val);
+            AsIns(&START1,val);
+            i++;
+            n--;
+        }
+        printf("\nLinked List 1 is:\n");
+        Traverse(START1);
+        printf("\n");
+        i=1;
+        while(m>0)
+        {
+            printf("Enter data %d: ",i);
+            scanf("%d",&val);
+            AsIns(&START2,val);
+            i++;
+            m--;
+        }
+        printf("\nLinked List 2 is:");
+        Traverse(START2);
+        printf("\n");
+        printf("\nUnion Linked List is:");
+        START3=Union(START1,START2);
+        Traverse(START3);
+        exit(0);
+    }
+    return 0;
+}
+
