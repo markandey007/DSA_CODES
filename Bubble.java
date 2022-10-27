@@ -7,17 +7,17 @@ public class Bubble {
         System.out.println(Arrays.toString(nums));
     }
 
-    static void BubbleSort(int[] arr){
+    static void BubbleSort(int[] a){
         boolean swapped;
-        for(int i= 0; i<arr.length;i++){
+        for(int i= 0; i<a.length;i++){
             swapped = false;
             // for each step max item will come at last position
-            for (int j = 1; j < arr.length-i; j++) {
+            for (int j = 1; j < a.length-i; j++) {
                 // swap if item is smaller than previous element in the array
-                if(arr[j]<arr[j-1]){
-                    int temp = arr[j];
-                    arr[j] = arr[j-1];
-                    arr[j-1] = temp;
+                if(a[j]<a[j-1]){
+                    int temp = a[j];
+                    a[j] = a[j-1];
+                    a[j-1] = temp;
                     swapped = true;
                 }
             }
