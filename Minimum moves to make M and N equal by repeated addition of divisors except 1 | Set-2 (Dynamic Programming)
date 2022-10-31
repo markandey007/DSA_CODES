@@ -1,0 +1,61 @@
+// C++ code for generic approach
+// of the divide and conquer optimization
+
+#include <bits/stdc++.h>
+using namespace std;
+
+const int MAX_M = 10005;
+const int MAX_N = 1005;
+int N, M, dp[MAX_M][MAX_N], cost[MAX_M][MAX_M];
+
+// Function to perform the decide and conquer
+void divide(int l, int r, int optl,
+			int optr, int i)
+{
+	if (l > r)
+	return;
+
+	// Find middle value
+	int mid = (l + r) >> 1;
+
+	// Store the minimum cost and opt(i, j)
+	pair<int, int> best = {INT_MAX, -1};
+
+	// Find the value of the best cost and opt(i, j)
+	for (int k = optl; k < min(mid, optr); k++)
+		best = min(best, {(k ? dp[i-1][k] : 0)
+						+ cost[k][mid], k});
+
+	// Store the minimum cost in the dp array
+	dp[i][mid] = best.first;
+	int opt = best.second;
+
+	// Recursively call the divide function
+	// to fill the other dp states
+	divide(l, mid - 1, optl, opt, i);
+	divide(mid + 1, r, opt, optr, i);
+}
+
+
+void solve()
+{
+	// Initial state of the dp table
+	// Normally table is initialized for j=0
+	// or j=1 depending on problem statement
+	for (int i = 0; i < N; i++)
+		dp[0][i] = cost[0][i];
+
+	// Fill in the dp array
+	// with the divide function
+	for (int i = 1; i < M; i++)
+		divide(0, N - 1, 0, N - 1, i);
+
+	cout << dp[M-1][N-1] << endl;
+}
+
+int main() \
+{
+	// Take the required inputs
+	solve();
+	return 0;
+}
