@@ -1,3 +1,4 @@
+import io.github.pixee.security.BoundedLineReader;
 import java.io.*;
 public class FloydTrg{
     void gen(int n){
@@ -12,6 +13,6 @@ public class FloydTrg{
     public static void main(String args[])throws IOException
     {
         System.out.println("Enter the line numbers:");
-        new FloydTrg().gen(Integer.parseInt(new BufferedReader(new InputStreamReader(System.in)).readLine()));
+        new FloydTrg().gen(Integer.parseInt(BoundedLineReader.readLine(new BufferedReader(new InputStreamReader(System.in)), 5_000_000)));
     }
 }
