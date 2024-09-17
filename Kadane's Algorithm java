@@ -1,0 +1,35 @@
+public class Kadanes {
+
+    public static int kadanes(int arr[]) {
+        int cs = 0;
+        int ms = Integer.MIN_VALUE;
+        int count = 0;
+        int flag = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] < 0) {
+                count++;
+                if (count == arr.length) {
+                    flag = 1;
+                    break;
+                }
+            }
+
+            cs += arr[i];
+            if (cs < 0) {
+                cs = 0;
+            }
+            ms = Math.max(cs, ms);
+
+        }
+        if (flag == 1) {
+            return -1;
+        } else {
+            return ms;
+        }
+    }
+
+    public static void main(String[] args) {
+        int arr[] = { -1, -2,-3 ,7};
+        System.out.println(kadanes(arr));
+    }
+}
